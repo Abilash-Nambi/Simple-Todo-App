@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
-import { AiFillEdit } from "react-icons/ai";
+
 import { MdDelete } from "react-icons/md";
-import { MdDone } from "react-icons/md";
+import { GrUndo } from "react-icons/gr";
 
 interface TodoItem {
   id: number;
@@ -105,7 +105,7 @@ const CompletedTodo = ({
             handleClick(data.id);
           }}
         >
-          <MdDone />
+          <GrUndo />
         </span>
       </div>
     </form>
