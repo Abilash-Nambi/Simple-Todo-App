@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import InputFeild from "./components/InputFeild";
 import { TodoList } from "./components/TodoList";
+import { json } from "stream/consumers";
 
 interface Todo {
   id: number;
@@ -12,10 +13,39 @@ interface Todo {
 
 const App = () => {
   const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [completedTask, setCompletedTask] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      return JSON.parse(storedTodos);
+    }
+    return [];
+  });
+  const [completedTask, setCompletedTask] = useState<Todo[]>(() => {
+    const storedCompletedTodos = localStorage.getItem("completedTask");
+    if (storedCompletedTodos) {
+      return JSON.parse(storedCompletedTodos);
+    }
+    return [];
+  });
   //console.log(completedTask, "completedTask");
-  console.log(todos, "todos");
+  //console.log(todos, "todos");
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    const storedCompletedTodos = localStorage.getItem("completedTask");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+    if (storedCompletedTodos) {
+      setCompletedTask(JSON.parse(storedCompletedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("completedTask", JSON.stringify(completedTask));
+  }, [todos, completedTask]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (todo) {
