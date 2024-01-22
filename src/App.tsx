@@ -4,6 +4,7 @@ import "./App.css";
 import InputFeild from "./components/InputFeild";
 import { TodoList } from "./components/TodoList";
 import { json } from "stream/consumers";
+import { Triangle } from "react-loader-spinner";
 
 interface Todo {
   id: number;
@@ -27,6 +28,11 @@ const App = () => {
     }
     return [];
   });
+  const [loader, setLoader] = useState(true);
+  setTimeout(() => {
+    setLoader(false);
+  }, 3000);
+
   //console.log(completedTask, "completedTask");
   //console.log(todos, "todos");
 
@@ -56,16 +62,34 @@ const App = () => {
 
   return (
     <div className="App">
-      <span className="heading">Taskify</span>
+      {loader ? (
+        <Triangle
+          visible={true}
+          height="600"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="triangle-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      ) : (
+        <>
+          <span className="heading">Taskify</span>
 
-      <InputFeild todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} />
+          <InputFeild
+            todo={todo}
+            setTodo={setTodo}
+            handleSubmit={handleSubmit}
+          />
 
-      <TodoList
-        todos={todos}
-        setTodos={setTodos}
-        setCompletedTask={setCompletedTask}
-        completedTask={completedTask}
-      />
+          <TodoList
+            todos={todos}
+            setTodos={setTodos}
+            setCompletedTask={setCompletedTask}
+            completedTask={completedTask}
+          />
+        </>
+      )}
     </div>
   );
 };
