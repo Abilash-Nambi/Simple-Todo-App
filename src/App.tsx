@@ -29,11 +29,12 @@ const App = () => {
     return [];
   });
   const [loader, setLoader] = useState(true);
+  const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
   setTimeout(() => {
     setLoader(false);
   }, 3000);
 
-  //console.log(completedTask, "completedTask");
+  console.log(currentDateTime, "currentDateTime");
   //console.log(todos, "todos");
 
   useEffect(() => {
@@ -60,6 +61,10 @@ const App = () => {
     }
   };
 
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-IN");
+  };
+
   return (
     <div className="App">
       {loader ? (
@@ -75,6 +80,7 @@ const App = () => {
       ) : (
         <>
           <span className="heading">Taskify</span>
+          <span className="heading-date">{formatDate(currentDateTime)}</span>
 
           <InputFeild
             todo={todo}
