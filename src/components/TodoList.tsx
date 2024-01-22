@@ -42,11 +42,14 @@ export const TodoList: React.FC<Props> = ({
   completedTask,
   setCompletedTask,
 }) => {
+  const todosLength: number = todos.length;
+  const completedLength: number = completedTask.length;
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <h4 className="todo-list-heading">Pending Task</h4>
+          <h4 className="todo-list-heading">Pending Task ({todosLength})</h4>
           {todos?.map((data) => (
             <PendingTodo
               key={data.id}
@@ -59,7 +62,9 @@ export const TodoList: React.FC<Props> = ({
           ))}
         </div>
         <div className="col-md-6">
-          <h4 className="todo-list-heading">Completed Task</h4>
+          <h4 className="todo-list-heading">
+            Completed Task ({completedLength})
+          </h4>
           {completedTask?.map((data) => (
             <CompletedTodo
               key={data.id}
