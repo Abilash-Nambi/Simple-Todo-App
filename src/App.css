@@ -8,7 +8,12 @@
   align-items: center;
   overflow: auto;
   font-family: "Neucha", cursive;
-  background-color: SlateBlue;
+  background: rgb(71, 94, 166);
+  background: linear-gradient(
+    153deg,
+    rgba(71, 94, 166, 1) 10%,
+    rgba(28, 97, 62, 0.8604691876750701) 100%
+  );
 }
 .heading {
   text-transform: uppercase;

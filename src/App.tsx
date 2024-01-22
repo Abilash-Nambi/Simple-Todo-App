@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import InputFeild from "./components/InputFeild";
@@ -14,7 +14,7 @@ const App = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTask, setCompletedTask] = useState<Todo[]>([]);
-  console.log(completedTask, "completedTask");
+  //console.log(completedTask, "completedTask");
   console.log(todos, "todos");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

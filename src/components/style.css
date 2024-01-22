@@ -28,7 +28,12 @@
   right: 0px;
   border: none;
   font-size: 15px;
-  background-color: slateblue;
+  background: rgb(71, 94, 166);
+  background: linear-gradient(
+    153deg,
+    rgba(71, 94, 166, 1) 10%,
+    rgba(28, 97, 62, 0.8604691876750701) 100%
+  );
   color: white;
   transition: 0.2s all;
   box-shadow: 0 0 10px black;
