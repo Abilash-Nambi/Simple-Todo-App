@@ -61,9 +61,7 @@ const App = () => {
     }
   };
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-IN");
-  };
+  let date = currentDateTime.toLocaleDateString("en-IN");
 
   return (
     <div className="App">
@@ -80,7 +78,7 @@ const App = () => {
       ) : (
         <>
           <span className="heading">Taskify</span>
-          <span className="heading-date">{formatDate(currentDateTime)}</span>
+          <span className="heading-date">{date}</span>
 
           <InputFeild
             todo={todo}
